@@ -1,0 +1,4 @@
+# Ignore specific directories
+/allmodels_/
+/open3d/models_
+/open3d/yolo_training
