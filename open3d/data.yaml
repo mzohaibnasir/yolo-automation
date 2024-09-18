@@ -1,0 +1,8 @@
+train: open3d/train
+val: open3d/train/
+nc: 4
+names:
+  0: pepsi
+  1: wavy
+  2: sprite
+  3: fanta

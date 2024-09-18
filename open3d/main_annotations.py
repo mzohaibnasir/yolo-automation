@@ -6,7 +6,7 @@ import glob
 # Parameters
 image_width = 1920
 image_height = 1080
-output_annotation_dir = "./train/labels"
+output_annotation_dir = "train/labels"
 output_visualization_dir = "annotated_images"
 os.makedirs(output_annotation_dir, exist_ok=True)
 os.makedirs(output_visualization_dir, exist_ok=True)
@@ -24,24 +24,25 @@ def get_class_id(class_name, class_mapping):
 def create_data_yaml(class_mapping, yaml_path):
     """Create a data.yaml file for YOLO format."""
     with open(yaml_path, 'w') as f:
-        f.write("train: /home/zohaib/pytorch3d-renderer/open3d/train\n")
-        f.write("val: /home/zohaib/pytorch3d-renderer/open3d/train/\n")
+
+        f.write("train: open3d/train\n")
+        f.write("val: open3d/train/\n")
         f.write("nc: {}\n".format(len(class_mapping)))
         f.write("names:\n")
         for class_name, class_id in class_mapping.items():
             f.write("  {}: {}\n".format(class_id, class_name))
 
 # Directory containing subdirectories for each class
-models_directory = '/home/zohaib/pytorch3d-renderer/open3d/models_/'
+models_directory = 'models_/'
 class_mapping = get_class_mapping(models_directory)
 
 # Create data.yaml file
 yaml_file_path = 'data.yaml'
 create_data_yaml(class_mapping, yaml_file_path)
 
-train_path = '/home/zohaib/pytorch3d-renderer/open3d/train/images'
+train_path = 'train/images'
 # Load all images
-image_files = glob.glob("/home/zohaib/pytorch3d-renderer/open3d/train/images/*.png")
+image_files = glob.glob("train/images/*.png")
 
 for image_file in image_files:
     # Extract class name from filename
